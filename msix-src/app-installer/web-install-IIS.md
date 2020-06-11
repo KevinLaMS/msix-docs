@@ -1,7 +1,7 @@
 ---
 title: Distribute a Windows 10 app from an IIS server
 description: This tutorial demonstrates how to set up an IIS server, verify that your web app can host app packages, and invoke and use App Installer effectively.
-ms.date: 05/30/2018
+ms.date: 06/11/2020
 ms.topic: article
 keywords: windows 10, uwp, app installer, AppInstaller, sideload, related set, optional packages, IIS Server
 ms.localizationpriority: medium
@@ -18,7 +18,7 @@ The App Installer app allows developers and IT Pros to distribute Windows 10 app
 
 To successfully go through with this tutorial, you will need the following:
 
-1. Visual Studio 2017  
+1. [Visual Studio 2019](https://visualstudio.microsoft.com/vs/) (recommended) or Visual Studio 2017  
 2. Web development tools and IIS 
 3. Windows 10 app package - The app package that you will distribute
 
@@ -37,9 +37,9 @@ You will also need to install ASP.NET 4.5 or greater. To install it, locate **In
 
 ![Screenshot of installing ASP.NET feature](images/install-asp.png)
 
-## Step 2 - Install Visual Studio 2017 and Web Development tools 
+## Step 2 - Install Visual Studio 2019 and Web Development tools 
 
-[Install Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) if you have not already installed it. If you already have Visual Studio 2017, ensure that the following workloads are installed. If the workloads are not present on your installation, follow along using the Visual Studio Installer (found from the Start menu).  
+[Install Visual Studio 2019](https://docs.microsoft.com/visualstudio/install/install-visual-studio) if you have not already installed it. If you already have Visual Studio 2019, ensure that the following workloads are installed. If the workloads are not present on your installation, follow along using the Visual Studio Installer (found from the Start menu).  
 
 During installation, select **ASP.NET and Web development** and any other workloads that you are interested in. 
 
@@ -47,7 +47,7 @@ Once installation is complete, launch Visual Studio and create a new project (**
 
 ## Step 3 - Build a Web App
 
-Launch Visual Studio 2017 as **Administrator** and create a new **Visual C# Web Application** project with an **empty** project template. 
+Launch Visual Studio 2019 as **Administrator** and create a new **Visual C# Web Application** project with an **empty** project template. 
 
 ![Screenshot of creating a new web project](images/sample-web-app.png)
 
