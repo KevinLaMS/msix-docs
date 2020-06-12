@@ -47,17 +47,26 @@ Once installation is complete, launch Visual Studio and create a new project (**
 
 ## Step 3 - Build a Web App
 
-Launch Visual Studio 2019 as **Administrator** and create a new **Visual C# Web Application** project with an **empty** project template. 
+Launch Visual Studio 2019 as **Administrator** and create a new **ASP.NET Web Application (.NET framework)** or **ASP.NET Core Web Application**  project with an **empty** project template. 
 
 ![Screenshot of creating a new web project](images/sample-web-app.png)
 
 ## Step 4 - Configure IIS with our Web App 
+
+### ASP.NET Web Application (.NET framework)
 
 From the Solution Explorer, right click on the root project and select **Properties**.
 
 In the web app properties, select the **Web** tab. In the **Servers** section, choose **Local IIS** from the drop down menu and click **Create Virtual Directory**. 
 
 ![Screenshot of web tab in project properties](images/web-tab.png)
+
+### ASP.NET Core Web Application
+When using the ASP.NET Core Web Application project, the is **Local IIS** is pre-configured.  You can verify this by right clicking on the root project and select **Properties** in the Solution Explorer. 
+
+In the web app properties, select the **Debug** tab. In the **Web Server Settings** verify the **App URL** and **Enable SSL** settings are correct.
+
+![Screenshot of web tab in project properties](images/web-tab-core.png)
 
 ## Step 5 - Add an app package to a web application 
 
@@ -96,6 +105,9 @@ Include the following HTML code in your web page. The key to successfully invoki
 
 ## Step 7 - Configure the web app for app package MIME types
 
+
+### ASP.NET Web Application (.NET framework)
+
 Open the **Web.config** file from the solution explorer and add the following lines within the `<configuration>` element. 
 
 ```xml
@@ -111,7 +123,25 @@ Open the **Web.config** file from the solution explorer and add the following li
 </system.webServer>
 ```
 
-## Step 8 - Add loopback exemption for App Installer
+### ASP.NET Core Web Application
+Open the Startup.cs file.  
+
+At the top of the file, enter
+```using Microsoft.AspNetCore.StaticFiles```
+
+Locate the **Configure** method.  Enter the following:
+```csharp
+var provider = new FileExtensionContentTypeProvider();
+provider.Mappings.Add(".appx", "application/appx");
+provider.Mappings.Add(".msix", "application/msix");
+provider.Mappings.Add(".appxbundle", "application/appxbundle");
+provider.Mappings.Add(".msixbundle", "application/msixbundle");
+provider.Mappings.Add(".appinstaller", "application/appinstaller");
+app.UseStaticFiles(new StaticFileOptions {ContentTypeProvider = provider});
+```
+
+
+## Step 8 - Add loopback exemption for App Installer (ASP.NET Core Web Application Only)
 
 Due to network isolation, Windows 10 apps like App Installer are restricted to use IP loopback addresses like http://localhost/. When using local IIS Server, App Installer must be added to the loopback exempt list. 
 
